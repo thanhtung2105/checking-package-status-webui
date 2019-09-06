@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html>
+<head>
+<link rel="icon" href="https://freeiconshop.com/wp-content/uploads/edd/location-marker-flat.png">
+  <title>Checking Package Status</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+<style>
+body  {
+  background-image: url("https://cdn.itviec.com/photos/35926/headline_photo/tma-solutions-headline_photo.jpg?XxbSnxJvSUeGWLHxg8YST8iW");
+  background-attachment: fixed;
+  background-position: center;
+  background-color: #cccccc;
+  background-size: 1500px 700px;
+  background-blend-mode: screen;
+}
+table, th, td {
+  border: 2px solid rgb(0, 128, 255);
+  border-collapse: collapse;
+}
+th, td {
+  padding: 5px;
+}
+th {
+  text-align: left;
+}
+c1 {
+  color: rgb(0, 128, 255);
+}
+c2 {
+  color: #0085C5;
+}
+</style>
+</head>
+
+
+<body>
+<h2><center><b><c2>Checking Package Status</c2></b></center></h2>
+<center><img src="https://i.ibb.co/Jm8m7Xc/1111.png" width="300" height="130"></center>
+<br/>
+<h4><center><b><i>Input your shipping code to find information</i></b></center></h4>
+<form>
+    <label for="inputdefault"> Your #shipping_code: </label>
+    <div class="input-group input-group-lg">
+      <input type="text" id="barcode" class="form-control" placeholder="Search">
+      <div class="input-group-btn">
+        <button class="btn btn-default" type="submit"><i class="glyphicon glyphicon-search"></i></button>
+        <br/>
+      </div>
+    </div>
+</form>
+<button onclick="getInfo()" class="btn btn-primary">Get information</button>  
+<!--<button onclick="getInfo()">Get information</button>   -->
+<br/>
+<br/>
+
+<!-- PACKAGE INFORMATION----------------------------------------------------------->
+<p id="mainjs"></p>
+<script> 
+var barcode = '0107201913092019';
+var name = "Vinsmart LIVE 4GB/64GB";
+var origin = "Vietnam";
+var quality = "Grand new 100%"
+var temp = "28'C"
+var humi = "46%"
+
+var output = "None - Initive Value";
+
+function getInfo(click){
+	var checkingBarcode = document.getElementById("barcode").value;
+	if (checkingBarcode === barcode)
+    	output = "- Barcode: " + checkingBarcode + "\n- Name: " + name + "\n- Origin: " + origin + "\n- Quality: " + quality + "\n- Real-time status: " + temp + " - " + humi;
+    else 
+        output = "Not found package, barcode not matched!";
+        
+    alert("Your package information: \n\n" + output);
+    console.log("Your package information: \n\n" + output);
+    document.getElementById("mainjs").innerHTML = "Your package information: \n" + output;
+}
+</script>
+<!-- BARCODE----------------------------------------------------------->
+
+<!-- <h4><center><b><i>Coordinates</i></b></center></h4>
+<p class="bg-danger"><b>Click the "Find location" button to get the updated of package status</b></p>
+<input type="text" id="latitude" value="Latitude...">
+<input type="text" id="longitude" value="Longitude...">
+<br/>
+<br/>
+<button onclick="findLocate()" class="btn btn-success">Find location</button> -->
+
+
+<!--<button onclick="findLocate()">Find location</button>  -->
+<br/>
+
+<!--TABLE - INFORMATION -->
+<div class="card">
+    <div class="card-header btn"  data-toggle="collapse" data-target="#infor_table">
+        <h3><b><center><c1>Your Package Status</c1></center></b></h3>
+    </div>
+    <div class="card-body collapse"  data-toggle="collapse"  aria-expanded="false" id="infor_table">
+      
+      <table style="width:100%">
+  <tr>
+    <th>#product_barcode</th>
+    <td><script type="text/javascript">document.write(barcode);</script></td> 
+  </tr>
+  <tr>
+    <th>Name</th>
+    <td><script type="text/javascript">document.write(name);</script></td>
+  </tr>
+  <tr>
+    <th>Origin</th>
+    <td><script type="text/javascript">document.write(origin);</script></td>
+  </tr>
+  <tr>
+    <th>Quality status</th>
+    <td><script type="text/javascript">document.write(quality);</script></td>
+  </tr>
+   <tr>
+    <th rowspan="2">Real-time product status:</th>
+    <td>Temperature: <script type="text/javascript">document.write(temp);</script></td>
+  </tr>
+  <tr>
+    <td>Humidity: <script type="text/javascript">document.write(humi);</script></td>
+  </tr>
+</table>
+
+    </div>
+    
+    <br/>
+    
+    <div class="card-header btn"  data-toggle="collapse" data-target="#map_appear">
+        <h3><b><center><c1>Real-time package location</c1></center></b></h3>
+    </div>
+    <div class="card-body collapse"  data-toggle="collapse"  aria-expanded="false" id="map_appear">
+      <div id="map"></div>
+      <!-- Replace the value of the key parameter with your own API key. -->
+      <script async defer
+      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCkUOdZ5y7hMm0yrcCQoCvLwzdM6M8s5qk&callback=initMap">
+			</script>       
+    </div>
+    
+    
+</div>
+<!-----------------------------------------
+<h3>Package Location Status</h3>
+<!--LOCATION - GOOGLE MAP-->
+<!-- <div class="card"> 
+  
+</div> -->
+<!------------------------------------------------------->
+<!------------------------------------------------------->
+
+<script>
+// Initialize and add the map
+var latitude;
+var longitude;
+var zoom;
+latitude = 10.855770;
+longitude = 106.631118;
+zoom = 16;
+function initMap() {
+  var uluru = {
+    lat: latitude,
+    lng: longitude
+  };
+  var map = new google.maps.Map(
+    document.getElementById('map'), {
+      zoom: zoom,
+      center: uluru
+    });
+  var marker = new google.maps.Marker({
+    position: uluru,
+    map: map
+  });
+}
+function findLocate() {
+  var x = document.getElementById("latitude").value;
+  latitude = parseFloat(x);
+  var y = document.getElementById("longitude").value;
+  longitude = parseFloat(y);
+  zoom = 15;
+  initMap();
+}
+</script>
+</body>
+</html>
