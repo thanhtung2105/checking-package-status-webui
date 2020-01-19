@@ -1,3 +1,5 @@
+<!--- Day la giao dien chinh cua gui -->
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -6,6 +8,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+  <script src="https://cdn.jsdelivr.net/gh/ethereum/web3.js/dist/web3.min.js"></script>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
 <style>
@@ -60,17 +63,22 @@ c2 {
 <!-- PACKAGE INFORMATION----------------------------------------------------------->
 <p id="mainjs"></p>
 <script> 
+
+
+// phan code lay du lieu tu blockchain hien len gui
 var barcode = '0107201913092019';
 var name = "Vinsmart LIVE 4GB/64GB";
 var origin = "Vietnam";
 var quality = "Grand new 100%"
 var temp = "28'C"
 var humi = "46%"
-
 var output = "None - Initive Value";
 
+// xu ly su kien click tren gui
 function getInfo(click){
-	var checkingBarcode = document.getElementById("barcode").value;
+  var checkingBarcode = document.getElementById("barcode").value;
+  var web3 = new Web3();
+  // vi chua ket noi phan backend voi blockchain duoc nen se lay du lieu san co de demo tinh nang
 	if (checkingBarcode === barcode)
     	output = "- Barcode: " + checkingBarcode + "\n- Name: " + name + "\n- Origin: " + origin + "\n- Quality: " + quality + "\n- Real-time status: " + temp + " - " + humi;
     else 
@@ -147,7 +155,7 @@ function getInfo(click){
 </div>
 <!-----------------------------------------
 <h3>Package Location Status</h3>
-<!--LOCATION - GOOGLE MAP-->
+<!-LOCATION - GOOGLE MAP-->
 <!-- <div class="card"> 
   
 </div> -->
